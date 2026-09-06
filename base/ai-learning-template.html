@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI学習ロードマップ | 学習テーマ</title>
+  <style>
+    :root {
+      --color-bg: #f6f8fc;
+      --color-surface: #ffffff;
+      --color-primary: #4f46e5;
+      --color-primary-dark: #3730a3;
+      --color-primary-light: #eef2ff;
+      --color-accent: #0ea5e9;
+      --color-success: #16a34a;
+      --color-text: #1f2937;
+      --color-text-secondary: #6b7280;
+      --color-border: #e5e7eb;
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow-card: 0 8px 30px rgba(15, 23, 42, 0.06);
+      --content-width: 1000px;
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 40px;
+      --space-xl: 64px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.8;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,.94);
+      border-bottom: 1px solid var(--color-border);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner,
+    main,
+    .footer-inner {
+      width: min(calc(100% - 32px), var(--content-width));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .brand {
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+
+    .progress {
+      color: var(--color-text-secondary);
+      font-size: .9rem;
+    }
+
+    .hero {
+      padding: var(--space-xl) 0 var(--space-lg);
+    }
+
+    .breadcrumb {
+      color: var(--color-text-secondary);
+      font-size: .92rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-card {
+      padding: clamp(28px, 5vw, 52px);
+      border-radius: var(--radius-lg);
+      color: white;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+      box-shadow: var(--shadow-card);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      margin-bottom: var(--space-sm);
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      font-weight: 700;
+      font-size: .86rem;
+    }
+
+    h1, h2, h3 { line-height: 1.35; margin-top: 0; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: var(--space-sm); }
+    h2 { font-size: clamp(1.45rem, 3vw, 2rem); }
+    p:last-child { margin-bottom: 0; }
+
+    .section {
+      margin-bottom: var(--space-lg);
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: clamp(20px, 4vw, 32px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+
+    .goal {
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      background: var(--color-primary-light);
+    }
+
+    .formula {
+      margin: var(--space-md) 0;
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      background: #f8fafc;
+      border: 1px solid var(--color-border);
+      text-align: center;
+      font-family: "Times New Roman", serif;
+      font-size: 1.25rem;
+    }
+
+    .ai-note {
+      border-left: 5px solid var(--color-accent);
+    }
+
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      padding: 14px 16px;
+      margin-top: 10px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: white;
+      color: var(--color-text);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+
+    .feedback {
+      display: none;
+      margin-top: var(--space-sm);
+      padding: var(--space-sm);
+      border-radius: var(--radius-sm);
+      background: var(--color-primary-light);
+    }
+
+    footer {
+      margin-top: var(--space-xl);
+      border-top: 1px solid var(--color-border);
+      background: white;
+    }
+
+    .footer-inner {
+      padding: var(--space-md) 0;
+      color: var(--color-text-secondary);
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; }
+      .header-inner { min-height: 56px; }
+      .hero { padding-top: var(--space-lg); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">AI学習ロードマップ</div>
+      <div class="progress">数学基礎 / 線形代数</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="breadcrumb">数学基礎 ＞ 線形代数 ＞ 学習テーマ</div>
+      <div class="hero-card">
+        <div class="eyebrow">LESSON TEMPLATE</div>
+        <h1>学習テーマ</h1>
+        <p>ここに、このレッスンで学ぶ内容の概要を記載します。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <article class="card">
+          <h2>なぜ学ぶのか</h2>
+          <p>このテーマを学ぶ理由と、後続学習とのつながりを説明します。</p>
+        </article>
+        <article class="card">
+          <h2>学習目標</h2>
+          <div class="goal">このレッスン終了後に説明・計算・判断できることを記載します。</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2>1. 基礎を理解する</h2>
+      <p>初心者向けの直感的な説明をここに記載します。</p>
+      <div class="formula">数式・記号・定義</div>
+    </section>
+
+    <section class="section card">
+      <h2>2. 具体例で確認する</h2>
+      <p>実際の数値や身近な例を使って理解を深めます。</p>
+    </section>
+
+    <section class="section card ai-note">
+      <h2>AIではどう使う？</h2>
+      <p>この数学・技術が機械学習、生成AI、データ処理などでどのように使われるか説明します。</p>
+    </section>
+
+    <section class="section card">
+      <h2>確認クイズ</h2>
+      <p><strong>問題：</strong>ここに確認問題を記載します。</p>
+      <button class="quiz-option" onclick="answerQuiz(true)">A. 正しい選択肢</button>
+      <button class="quiz-option" onclick="answerQuiz(false)">B. 誤った選択肢</button>
+      <div id="feedback" class="feedback"></div>
+    </section>
+
+    <section class="section card">
+      <h2>まとめ</h2>
+      <ul>
+        <li>重要ポイント1</li>
+        <li>重要ポイント2</li>
+        <li>AIとの関連</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">AI学習ロードマップ 共通教材テンプレート</div>
+  </footer>
+
+  <script>
+    function answerQuiz(correct) {
+      const feedback = document.getElementById("feedback");
+      feedback.style.display = "block";
+      feedback.textContent = correct
+        ? "正解です。ここに解説を表示します。"
+        : "もう一度考えてみましょう。ここにヒントや解説を表示します。";
+    }
+  </script>
+</body>
+</html>
