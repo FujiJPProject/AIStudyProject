@@ -1,53 +1,46 @@
 # 第3段階：Neural Network
 
-[前の段階](02_第2段階_機械学習基礎.md) ｜ [全体概要・目次](00_全体概要・目次.md) ｜ [次の段階](04_第4段階_Transformer.md)
+[前の段階](02_第2段階_機械学習基礎.md) ｜ [全体概要・目次](Readme.md) ｜ [次の段階](04_第4段階_Transformer.md)
 
 ## この段階の位置づけ
 
-|項目|内容|
-|:--|:--|
-|学習テーマ|Neural Network|
-|最終的に理解するもの|Deep Learningがどのように学習するか|
-|学習項目数|34項目|
+| 項目                 | 内容                                |
+| :------------------- | :---------------------------------- |
+| 学習テーマ           | Neural Network                      |
+| 最終的に理解するもの | Deep Learningがどのように学習するか |
+| 学習項目数           | 27項目                              |
 
 ## 学習項目一覧
 
-|段階|学習テーマ|分野|項目|学習する理由|取得するべき内容|
-|:--|:--|:--|:--|:--|:--|
-|第3段階|Neural Network|ニューラルネット基礎|Neuron|ニューラルネットの最小構成単位を理解するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|入力・重み・バイアス・出力の関係を説明できること|
-|第3段階|Neural Network|ニューラルネット基礎|Weight|モデルが学習する対象を理解するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|Weightが入力へ与える影響を説明できること|
-|第3段階|Neural Network|ニューラルネット基礎|Bias|線形変換の自由度を高めるため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|Biasの役割を説明できること|
-|第3段階|Neural Network|ニューラルネット基礎|Layer|複数段階の特徴変換を理解するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|Input・Hidden・Output Layerを説明できること|
-|第3段階|Neural Network|活性化関数|Sigmoid|非線形性の基本を理解するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|Sigmoidの特徴を説明できること|
-|第3段階|Neural Network|活性化関数|ReLU|Deep Learningで広く使われるため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|ReLUの特徴と問題点を説明できること|
-|第3段階|Neural Network|活性化関数|GELU|Transformerで利用されるため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|GELUの特徴を説明できること|
-|第3段階|Neural Network|活性化関数|SiLU|現代LLMでも利用されるため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|SiLUの特徴を説明できること|
-|第3段階|Neural Network|学習処理|Forward Propagation|入力から予測を生成する流れを理解するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|Forward処理を数式・コードで追跡できること|
-|第3段階|Neural Network|学習処理|Computational Graph|複雑な計算と微分の依存関係を理解するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|計算グラフを追えること|
-|第3段階|Neural Network|学習処理|Backpropagation|ニューラルネット学習の中心原理だから。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|誤差が各パラメータへ伝播する仕組みを説明できること|
-|第3段階|Neural Network|学習処理|Automatic Differentiation|PyTorchの自動微分を理解するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|autogradが何をしているか説明できること|
-|第3段階|Neural Network|PyTorch|Tensor|PyTorchの基本データ構造だから。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|Tensorの生成・形状変更・演算に加え、dtype・device・requires_grad・detachを扱えること|
-|第3段階|Neural Network|PyTorch|nn.Module|モデルを構築する基本クラスだから。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|独自モデルクラスを実装できること|
-|第3段階|Neural Network|PyTorch|nn.Linear|ニューラルネットの線形変換を実装するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|全結合層を利用・説明できること|
-|第3段階|Neural Network|PyTorch|loss.backward|Backpropagationを実行するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|勾配計算の流れを理解できること|
-|第3段階|Neural Network|PyTorch|optimizer.step|モデルパラメータを更新するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|zero_grad→Forward→Loss→Backward→optimizer.stepの順序で1回の学習Stepを実装できること|
-|第3段階|Neural Network|学習技法|Batch|複数データを効率的に学習するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|Batch Sizeが勾配推定のばらつき・メモリ使用量・計算効率・学習率へ与える影響を説明できること|
-|第3段階|Neural Network|学習技法|Epoch|データセットを何回学習したか管理するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|EpochとIterationの違いを説明できること|
-|第3段階|Neural Network|学習技法|Weight Initialization|学習の安定性を高めるため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|対称性を避ける理由を説明し、活性化関数に応じてXavier・He初期化を使い分けられること|
-|第3段階|Neural Network|学習技法|Normalizationの種類|学習を安定させるため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|データ正規化・BatchNorm・LayerNorm・RMSNormの対象軸と目的を区別し、Transformerで使う方式を説明できること|
-|第3段階|Neural Network|学習技法|Dropout|過学習を抑制するため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|Dropoutの仕組みを説明できること|
-|第3段階|Neural Network|学習技法|Gradient Clipping|勾配爆発を抑えるため。Transformer以降のモデル構造と学習処理を理解・実装する前提として必要であるため|勾配を制限する理由を説明できること|
-|第3段階|Neural Network|ニューラルネット基礎|Multi-Layer Perceptron|複数のLinear層と活性化関数を組み合わせる基本モデルを理解するため。個々のNeuronとLayerから、実際に学習可能なネットワークへ組み立てる中間概念が不足している|MLPを数式とPyTorchの両方で構築し、非線形な関係を学習させられること|
-|第3段階|Neural Network|活性化関数|Softmax|複数のスコアを確率分布へ変換するため。多クラス分類と次Token予測をニューラルネットの出力層へ接続する項目が不足している|Softmaxの出力が合計1になることと、Logit・確率・Cross Entropyの関係を説明できること|
-|第3段階|Neural Network|活性化関数|Gated Linear Unit・SwiGLU|情報を通す量を学習可能なGateで制御するため。SiLU単体から現代LLMで一般的なGated FFNへつなぐ項目が不足している|GLUの基本構造と、SiLUを使うSwiGLUがLLMのFFNで果たす役割を説明できること|
-|第3段階|Neural Network|学習処理|勾配消失・勾配爆発|深いネットワークで学習が不安定になる原因を理解するため。活性化関数、初期化、Normalization、Residual、Gradient Clippingの必要性を統合して理解する項目がない|層をまたぐ勾配が小さくなる・大きくなる条件と代表的な対策を説明できること|
-|第3段階|Neural Network|PyTorch|nn.Parameter・パラメータ登録|Optimizerが更新するTensorをモデルへ登録する仕組みを理解するため。通常のTensorと学習対象Parameterの違いが既存項目に含まれていない|nn.Parameter、parameters、state_dictの関係を説明し、学習対象を確認できること|
-|第3段階|Neural Network|PyTorch|Dataset・DataLoader|データをBatch単位で学習処理へ供給するため。簡単なモデルを実際のデータで学習させる入出力パイプラインが不足している|Datasetを定義し、DataLoaderでBatch化・Shuffleして反復できること|
-|第3段階|Neural Network|PyTorch|optimizer.zero_grad|前回の勾配を意図せず次の更新へ加算しないため。loss.backwardとoptimizer.stepの間を正しく構成するための必須操作が既存項目にない|PyTorchでは勾配が蓄積されることを説明し、適切な位置で勾配を初期化できること|
-|第3段階|Neural Network|PyTorch|Device・dtype管理|CPU・GPUと数値精度を意識してTensorとモデルを配置するため。GPU学習時のdevice不一致やdtype不一致を防ぐ基本操作が不足している|モデルとTensorを同じdeviceへ移し、用途に応じたdtypeを確認・設定できること|
-|第3段階|Neural Network|PyTorch|train・eval・推論モード|学習時と評価時でDropoutなどの動作を正しく切り替えるため。学習結果を正しく評価・推論するために必要なモード切替が既存項目にない|model.train、model.eval、no_gradまたはinference_modeを適切に使えること|
-|第3段階|Neural Network|PyTorch|Training Loop|データ取得からパラメータ更新までを一続きで実装するため。個別APIは列挙されているが、簡単なニューラルネットを学習させる全体手順が明示されていない|Batch取得、Forward、Loss、zero_grad、Backward、stepを正しい順序で実装できること|
-|第3段階|Neural Network|PyTorch|state_dict・モデル保存|学習済みモデルを保存し、評価や再学習に利用するため。実験の継続、最良モデルの評価、後続段階のCheckpoint理解に必要な基本操作が不足している|モデルとOptimizerのstate_dictを保存・読み込みできること|
+| 段階    | 学習テーマ     | 分野                 | 項目                         | 学習する理由                                                                                           | 取得するべき内容                                                                                                     |
+| :------ | :------------- | :------------------- | :--------------------------- | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------- |
+| 第3段階 | Neural Network | ニューラルネット基礎 | Neuron・Weight・Bias         | ニューラルネットの最小単位を、入力の重み付き和とBiasから出力を作る一つの計算として理解するため         | Neuronの式を書き、WeightとBiasが出力へ与える影響を説明できること                                                     |
+| 第3段階 | Neural Network | ニューラルネット基礎 | Layer                        | 複数のNeuronをまとめた処理単位と、ネットワーク内での役割を理解するため                                 | Input・Hidden・Output Layerを区別し、各Layerの入出力形状を説明できること                                             |
+| 第3段階 | Neural Network | 活性化関数           | Sigmoid・Softmax             | Logitを二値確率または多クラス確率分布へ変換する出力関数を比較して理解するため                          | SigmoidとSoftmaxの用途を区別し、Logit・確率・Cross Entropyとの関係を説明できること                                   |
+| 第3段階 | Neural Network | 活性化関数           | ReLU                         | 線形変換を重ねるだけでは表現できない非線形な関係を学習しやすくするため                                 | ReLUの式と特徴を説明し、Dead ReLUが起きる条件を説明できること                                                        |
+| 第3段階 | Neural Network | 活性化関数           | GELU・SiLU                   | 入力を滑らかにGateする活性化関数を比較し、Transformerや現代LLMで使われる非線形変換へつなげるため       | ReLUとの違い、およびGELUとSiLUの出力特性と主な用途を説明できること                                                   |
+| 第3段階 | Neural Network | ニューラルネット基礎 | Multi-Layer Perceptron       | Linear変換と活性化関数を層状に組み合わせ、非線形な関係を表現する基本モデルを理解するため               | MLPの入出力形状と各層の計算を数式で追い、NumPyでForward処理を実装できること                                          |
+| 第3段階 | Neural Network | 活性化関数           | Gated Linear Unit・SwiGLU    | MLPの情報経路を学習可能なGateで制御する仕組みを理解し、TransformerのFeed Forward Networkへ接続するため | GLUの基本構造と、SiLUを使うSwiGLUの計算・役割を説明できること                                                        |
+| 第3段階 | Neural Network | 学習処理             | Forward Propagation          | 入力を各Layerへ順に通して予測とLossを求める流れを理解するため                                          | MLPのForward処理を数式とNumPyコードの両方で追跡できること                                                            |
+| 第3段階 | Neural Network | 学習処理             | Computational Graph          | Forward処理を演算の依存関係として表し、どの経路で微分するかを理解するため                              | 演算から計算グラフを描き、入力・中間値・出力の依存関係をたどれること                                                 |
+| 第3段階 | Neural Network | 学習処理             | Backpropagation              | Lossから各パラメータまで計算グラフを逆向きにたどり、連鎖律で勾配を求めるため                           | 簡単なMLPについて勾配を手計算し、誤差が各パラメータへ伝わる流れを説明できること                                      |
+| 第3段階 | Neural Network | 学習技法             | Batch・Iteration・Epoch      | データを分割して更新する単位と、データセット全体を反復する回数を一体として管理するため                 | Batch Size、Iteration、Epochの関係を計算し、Batch Sizeが勾配のばらつき・メモリ・計算効率へ与える影響を説明できること |
+| 第3段階 | Neural Network | 学習処理             | 勾配消失・勾配爆発           | 深いネットワークで層をまたぐ勾配が小さくなる、または大きくなる原因を理解するため                       | 活性化関数、Weight、層数が勾配へ与える影響と、代表的な対策を説明できること                                           |
+| 第3段階 | Neural Network | 学習技法             | Weight Initialization        | 初期値の対称性を避け、層を進む信号と勾配の大きさを保ちやすくするため                                   | ゼロ初期化の問題を説明し、活性化関数に応じてXavier・He初期化を使い分けられること                                     |
+| 第3段階 | Neural Network | 学習技法             | Batch Normalization          | Mini-batchの統計量を使って中間表現を正規化し、学習を安定させる仕組みを理解するため                     | BatchNormが正規化する軸、学習可能なScale・Shift、学習時と推論時の動作差を説明できること                              |
+| 第3段階 | Neural Network | 学習技法             | Layer Normalization・RMSNorm | 各標本内の特徴方向を正規化する方式を学び、Batchへ依存しないTransformer向けの正規化へつなげるため       | BatchNormとの対象軸の違いと、LayerNorm・RMSNormの計算上の違いを説明できること                                        |
+| 第3段階 | Neural Network | 学習技法             | Dropout                      | 学習時に一部の出力を確率的に無効化し、特定の特徴への過度な依存を抑えるため                             | Dropoutの学習時と推論時の動作差、および過学習を抑える考え方を説明できること                                          |
+| 第3段階 | Neural Network | 学習技法             | Gradient Clipping            | Backpropagationで得た勾配が大きくなりすぎた場合に更新を安定させるため                                  | 値によるClippingとNormによるClippingを区別し、適用する位置を説明できること                                           |
+| 第3段階 | Neural Network | PyTorch              | Tensorの基本操作             | NumPyで扱った多次元配列をPyTorchのモデル入力・出力・パラメータとして扱うため                           | Tensorを生成し、形状変更、Indexing、要素ごとの演算、行列積を実行できること                                           |
+| 第3段階 | Neural Network | PyTorch              | Dataset・DataLoader          | 学習データを標本単位で保持し、ShuffleしたMini-batchとして反復可能にするため                            | Datasetを定義し、DataLoaderでBatch化・Shuffleして入力とラベルを取得できること                                        |
+| 第3段階 | Neural Network | PyTorch              | nn.Module・nn.Linear         | LayerとMLPの概念を、PyTorchがパラメータを追跡できるモデルとして実装するため                            | nn.Moduleを継承し、nn.Linearと活性化関数を組み合わせたMLPを実装できること                                            |
+| 第3段階 | Neural Network | PyTorch              | nn.Parameter・パラメータ登録 | 通常のTensorと、Optimizerが更新する学習対象を区別するため                                              | nn.Parameter、Moduleの属性、parameters・named_parametersの関係を説明し、登録された学習対象を確認できること           |
+| 第3段階 | Neural Network | PyTorch              | Device・dtype管理            | Tensorとモデルを同じ計算装置・数値型へ配置し、不一致によるエラーを防ぐため                             | CPU・利用可能なAccelerator間でTensorとモデルを移動し、用途に応じてdtypeを確認・変換できること                        |
+| 第3段階 | Neural Network | 学習処理             | Automatic Differentiation    | Tensorの演算履歴から勾配計算を自動化し、手計算したBackpropagationをPyTorchで実行するため               | BackpropagationとAutomatic Differentiationの関係を説明し、requires_grad、grad、grad_fn、detachの役割を説明できること |
+| 第3段階 | Neural Network | PyTorch              | zero_grad・backward・step    | 1回の学習Stepで必要な勾配の初期化、計算、パラメータ更新を正しい順序で一体として理解するため            | 勾配が既定で蓄積されることを説明し、zero_grad→Forward→Loss→backward→stepを実装できること                             |
+| 第3段階 | Neural Network | PyTorch              | Training Loop                | DataLoaderからのBatch取得と学習StepをEpoch単位で反復し、モデルを学習させるため                         | Batch取得、Device転送、Forward、Loss、勾配計算、更新を含むTraining Loopを実装できること                              |
+| 第3段階 | Neural Network | PyTorch              | train・eval・推論モード      | DropoutやBatchNormの動作を学習・評価で切り替え、不要な勾配計算を止めるため                             | model.train、model.eval、no_gradまたはinference_modeを適切に使い分けられること                                       |
+| 第3段階 | Neural Network | PyTorch              | state_dict・モデル保存       | 学習済みパラメータとOptimizer状態を保存し、評価・再開・後続段階のCheckpointに利用するため              | モデルとOptimizerのstate_dictを保存・読み込みし、推論または学習を再開できること                                      |
 
 ## 到達目標
 
@@ -77,4 +70,4 @@ PyTorchを利用して簡単なニューラルネットワークを構築・学�
 
 ---
 
-[前の段階](02_第2段階_機械学習基礎.md) ｜ [全体概要・目次](00_全体概要・目次.md) ｜ [次の段階](04_第4段階_Transformer.md)
+[前の段階](02_第2段階_機械学習基礎.md) ｜ [全体概要・目次](Readme.md) ｜ [次の段階](04_第4段階_Transformer.md)
