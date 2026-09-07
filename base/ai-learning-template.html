@@ -1,274 +1,913 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI学習ロードマップ | 学習テーマ</title>
-  <style>
-    :root {
-      --color-bg: #f6f8fc;
-      --color-surface: #ffffff;
-      --color-primary: #4f46e5;
-      --color-primary-dark: #3730a3;
-      --color-primary-light: #eef2ff;
-      --color-accent: #0ea5e9;
-      --color-success: #16a34a;
-      --color-text: #1f2937;
-      --color-text-secondary: #6b7280;
-      --color-border: #e5e7eb;
-      --radius-sm: 8px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --shadow-card: 0 8px 30px rgba(15, 23, 42, 0.06);
-      --content-width: 1000px;
-      --space-xs: 8px;
-      --space-sm: 16px;
-      --space-md: 24px;
-      --space-lg: 40px;
-      --space-xl: 64px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数学基礎｜分野：学習テーマを理解する</title>
+    <style>
+      :root {
+        --bg: #f6f8fc;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #667085;
+        --accent: #3157d5;
+        --accent-dark: #243b88;
+        --accent-soft: #eef2ff;
+        --border: #dfe5f0;
+        --good: #137333;
+        --bad: #b42318;
+        --warning: #b54708;
+        --shadow: 0 10px 28px rgba(31, 41, 55, 0.08);
+        --content-width: 980px;
+      }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+      * {
+        box-sizing: border-box;
+      }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-      background: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.8;
-    }
+      html {
+        scroll-behavior: smooth;
+      }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(255,255,255,.94);
-      border-bottom: 1px solid var(--color-border);
-      backdrop-filter: blur(12px);
-    }
+      body {
+        margin: 0;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, #eef2ff 0, transparent 30%),
+          var(--bg);
+        line-height: 1.75;
+      }
 
-    .header-inner,
-    main,
-    .footer-inner {
-      width: min(calc(100% - 32px), var(--content-width));
-      margin: 0 auto;
-    }
+      header {
+        background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+        color: white;
+        padding: 56px 20px 48px;
+      }
 
-    .header-inner {
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-sm);
-    }
+      .wrap {
+        width: min(var(--content-width), calc(100% - 32px));
+        margin: 0 auto;
+      }
 
-    .brand {
-      font-weight: 800;
-      color: var(--color-primary);
-    }
+      .eyebrow {
+        font-size: 0.9rem;
+        letter-spacing: 0.08em;
+        font-weight: 700;
+        opacity: 0.85;
+        margin-bottom: 8px;
+      }
 
-    .progress {
-      color: var(--color-text-secondary);
-      font-size: .9rem;
-    }
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        line-height: 1.2;
+      }
 
-    .hero {
-      padding: var(--space-xl) 0 var(--space-lg);
-    }
+      header p {
+        max-width: 800px;
+        margin: 18px 0 0;
+        opacity: 0.92;
+        font-size: 1.05rem;
+      }
 
-    .breadcrumb {
-      color: var(--color-text-secondary);
-      font-size: .92rem;
-      margin-bottom: var(--space-sm);
-    }
+      main {
+        padding: 36px 0 64px;
+      }
 
-    .hero-card {
-      padding: clamp(28px, 5vw, 52px);
-      border-radius: var(--radius-lg);
-      color: white;
-      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
-      box-shadow: var(--shadow-card);
-    }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 28px;
+        margin-bottom: 24px;
+      }
 
-    .eyebrow {
-      display: inline-block;
-      padding: 6px 12px;
-      margin-bottom: var(--space-sm);
-      border-radius: 999px;
-      background: rgba(255,255,255,.14);
-      font-weight: 700;
-      font-size: .86rem;
-    }
+      h2 {
+        margin: 0 0 16px;
+        font-size: 1.45rem;
+      }
 
-    h1, h2, h3 { line-height: 1.35; margin-top: 0; }
-    h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: var(--space-sm); }
-    h2 { font-size: clamp(1.45rem, 3vw, 2rem); }
-    p:last-child { margin-bottom: 0; }
+      h3 {
+        margin: 24px 0 10px;
+        font-size: 1.12rem;
+      }
 
-    .section {
-      margin-bottom: var(--space-lg);
-    }
+      .goal {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(3, 1fr);
+      }
 
-    .card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      padding: clamp(20px, 4vw, 32px);
-      box-shadow: var(--shadow-card);
-    }
+      .goal > div {
+        padding: 16px;
+        border-radius: 14px;
+        background: var(--accent-soft);
+        border: 1px solid #dce3ff;
+      }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-md);
-    }
+      .goal strong {
+        display: block;
+        color: var(--accent-dark);
+        margin-bottom: 4px;
+      }
 
-    .goal {
-      padding: var(--space-md);
-      border-radius: var(--radius-md);
-      background: var(--color-primary-light);
-    }
+      .definition {
+        font-size: 1.1rem;
+        padding: 20px;
+        border-left: 5px solid var(--accent);
+        background: #f8faff;
+        border-radius: 10px;
+      }
 
-    .formula {
-      margin: var(--space-md) 0;
-      padding: var(--space-md);
-      border-radius: var(--radius-md);
-      background: #f8fafc;
-      border: 1px solid var(--color-border);
-      text-align: center;
-      font-family: "Times New Roman", serif;
-      font-size: 1.25rem;
-    }
+      .math {
+        font-family: "Times New Roman", serif;
+        font-size: 1.15em;
+      }
 
-    .ai-note {
-      border-left: 5px solid var(--color-accent);
-    }
+      .example-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+        margin-top: 14px;
+      }
 
-    .quiz-option {
-      width: 100%;
-      text-align: left;
-      padding: 14px 16px;
-      margin-top: 10px;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-sm);
-      background: white;
-      color: var(--color-text);
-      cursor: pointer;
-      font: inherit;
-    }
+      .example {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        background: #fbfcfe;
+      }
 
-    .quiz-option:hover {
-      border-color: var(--color-primary);
-      background: var(--color-primary-light);
-    }
+      .label {
+        display: inline-block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--accent-dark);
+        background: #e8edff;
+        border-radius: 999px;
+        padding: 3px 9px;
+        margin-bottom: 7px;
+      }
 
-    .feedback {
-      display: none;
-      margin-top: var(--space-sm);
-      padding: var(--space-sm);
-      border-radius: var(--radius-sm);
-      background: var(--color-primary-light);
-    }
+      .note {
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
 
-    footer {
-      margin-top: var(--space-xl);
-      border-top: 1px solid var(--color-border);
-      background: white;
-    }
+      .table-wrap {
+        overflow-x: auto;
+        margin-top: 14px;
+      }
 
-    .footer-inner {
-      padding: var(--space-md) 0;
-      color: var(--color-text-secondary);
-      font-size: .9rem;
-      text-align: center;
-    }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 580px;
+      }
 
-    @media (max-width: 720px) {
-      .grid { grid-template-columns: 1fr; }
-      .header-inner { min-height: 56px; }
-      .hero { padding-top: var(--space-lg); }
-    }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="brand">AI学習ロードマップ</div>
-      <div class="progress">数学基礎 / 線形代数</div>
-    </div>
-  </header>
+      th,
+      td {
+        padding: 13px 11px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
 
-  <main>
-    <section class="hero">
-      <div class="breadcrumb">数学基礎 ＞ 線形代数 ＞ 学習テーマ</div>
-      <div class="hero-card">
-        <div class="eyebrow">LESSON TEMPLATE</div>
-        <h1>学習テーマ</h1>
-        <p>ここに、このレッスンで学ぶ内容の概要を記載します。</p>
+      th {
+        background: #f1f4fa;
+        font-weight: 700;
+      }
+
+      .op {
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        margin: 12px 0;
+        background: #fbfcfe;
+      }
+
+      .op strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--accent-dark);
+      }
+
+      .diagram {
+        margin: 18px 0;
+        padding: 18px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: #fbfcff;
+        overflow-x: auto;
+      }
+
+      .diagram-title {
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--accent-dark);
+      }
+
+      .diagram svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        min-width: 540px;
+      }
+
+      .axis {
+        stroke: #98a2b3;
+        stroke-width: 2;
+      }
+      .gridline {
+        stroke: #e4e7ec;
+        stroke-width: 1;
+      }
+      .vec-blue {
+        stroke: #3157d5;
+        stroke-width: 4;
+        fill: none;
+      }
+      .vec-green {
+        stroke: #137333;
+        stroke-width: 4;
+        fill: none;
+      }
+      .vec-orange {
+        stroke: #b54708;
+        stroke-width: 4;
+        fill: none;
+      }
+      .dash {
+        stroke-dasharray: 7 7;
+      }
+      .svgtext {
+        font-family: sans-serif;
+        fill: #344054;
+        font-size: 16px;
+      }
+      .svgstrong {
+        font-weight: 700;
+      }
+
+      .playground {
+        background: linear-gradient(180deg, #ffffff, #f8faff);
+      }
+
+      .inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .input-block {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px;
+        background: white;
+      }
+
+      .input-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+
+      input[type="number"],
+      input[type="text"],
+      select {
+        max-width: 100%;
+        padding: 9px;
+        border: 1px solid var(--border);
+        border-radius: 9px;
+        font: inherit;
+        color: var(--text);
+        background: white;
+      }
+
+      input[type="number"] {
+        width: 88px;
+      }
+
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      button {
+        font: inherit;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: 0.18s ease;
+      }
+
+      button.primary {
+        border: none;
+        background: var(--accent);
+        color: white;
+        padding: 10px 14px;
+        font-weight: 700;
+      }
+
+      button.secondary {
+        border: 1px solid var(--border);
+        background: white;
+        color: var(--text);
+        padding: 10px 14px;
+      }
+
+      button:hover:not(:disabled) {
+        transform: translateY(-1px);
+      }
+
+      .result {
+        margin-top: 16px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        background: var(--accent-soft);
+        min-height: 54px;
+        font-weight: 700;
+      }
+
+      .quiz {
+        border-top: 1px solid var(--border);
+        padding-top: 20px;
+        margin-top: 20px;
+      }
+
+      .quiz:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .question {
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .answers {
+        display: grid;
+        gap: 9px;
+      }
+
+      button.answer {
+        text-align: left;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        background: white;
+        color: var(--text);
+      }
+
+      button.answer:hover:not(:disabled) {
+        border-color: #9aabe8;
+        background: #f8faff;
+      }
+
+      .feedback {
+        min-height: 28px;
+        margin-top: 10px;
+        font-weight: 700;
+      }
+
+      .good {
+        color: var(--good);
+      }
+      .bad {
+        color: var(--bad);
+      }
+
+      .summary {
+        background: linear-gradient(135deg, #eef2ff, #f8fbff);
+        border: 1px solid #dbe4ff;
+      }
+
+      .checklist {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0;
+      }
+
+      .checklist li {
+        margin: 8px 0;
+        padding-left: 28px;
+        position: relative;
+      }
+
+      .checklist li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--good);
+        font-weight: 900;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding: 0 20px 36px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 720px) {
+        .goal,
+        .example-grid,
+        .inputs {
+          grid-template-columns: 1fr;
+        }
+
+        .card {
+          padding: 22px;
+        }
+
+        table {
+          font-size: 0.92rem;
+        }
+
+        th,
+        td {
+          padding: 10px 8px;
+        }
+
+        header {
+          padding: 44px 20px 38px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <div class="eyebrow">数学基礎 / 分野名</div>
+        <h1>学習テーマを理解する</h1>
+        <p>
+          ここに、このテーマを学ぶ理由と、この教材で理解できるようになる内容を記載します。
+          AI・機械学習とのつながりがある場合は、冒頭でも簡潔に触れます。
+        </p>
       </div>
-    </section>
+    </header>
 
-    <section class="section">
-      <div class="grid">
-        <article class="card">
-          <h2>なぜ学ぶのか</h2>
-          <p>このテーマを学ぶ理由と、後続学習とのつながりを説明します。</p>
-        </article>
-        <article class="card">
-          <h2>学習目標</h2>
-          <div class="goal">このレッスン終了後に説明・計算・判断できることを記載します。</div>
-        </article>
-      </div>
-    </section>
+    <main class="wrap">
+      <section class="card">
+        <h2>この学習のゴール</h2>
+        <div class="goal">
+          <div>
+            <strong>意味を理解する</strong>
+            学習テーマの定義や直感的な意味を、自分の言葉で説明できる。
+          </div>
+          <div>
+            <strong>用途を理解する</strong>
+            このテーマがAI・機械学習のどこで使われるか説明できる。
+          </div>
+          <div>
+            <strong>使えるようになる</strong>
+            基本的な計算・操作・判断を自分で実行できる。
+          </div>
+        </div>
+      </section>
 
-    <section class="section card">
-      <h2>1. 基礎を理解する</h2>
-      <p>初心者向けの直感的な説明をここに記載します。</p>
-      <div class="formula">数式・記号・定義</div>
-    </section>
+      <section class="card">
+        <h2>1. 学習テーマとは何か</h2>
 
-    <section class="section card">
-      <h2>2. 具体例で確認する</h2>
-      <p>実際の数値や身近な例を使って理解を深めます。</p>
-    </section>
+        <div class="definition">
+          <strong>学習テーマ</strong>とは、
+          <strong>ここに初心者向けの一文定義を記載します。</strong>
+        </div>
 
-    <section class="section card ai-note">
-      <h2>AIではどう使う？</h2>
-      <p>この数学・技術が機械学習、生成AI、データ処理などでどのように使われるか説明します。</p>
-    </section>
+        <h3>具体例</h3>
+        <div class="example-grid">
+          <div class="example">
+            <span class="label">例1</span>
+            <div class="math">数式・値・記号など</div>
+            <div class="note">この例が何を意味するか説明します。</div>
+          </div>
 
-    <section class="section card">
-      <h2>確認クイズ</h2>
-      <p><strong>問題：</strong>ここに確認問題を記載します。</p>
-      <button class="quiz-option" onclick="answerQuiz(true)">A. 正しい選択肢</button>
-      <button class="quiz-option" onclick="answerQuiz(false)">B. 誤った選択肢</button>
-      <div id="feedback" class="feedback"></div>
-    </section>
+          <div class="example">
+            <span class="label">例2</span>
+            <div class="math">別の数式・値・記号など</div>
+            <div class="note">比較できる別の例を示します。</div>
+          </div>
+        </div>
 
-    <section class="section card">
-      <h2>まとめ</h2>
-      <ul>
-        <li>重要ポイント1</li>
-        <li>重要ポイント2</li>
-        <li>AIとの関連</li>
-      </ul>
-    </section>
-  </main>
+        <div class="diagram">
+          <div class="diagram-title">図：学習テーマを視覚的に理解する</div>
 
-  <footer>
-    <div class="footer-inner">AI学習ロードマップ 共通教材テンプレート</div>
-  </footer>
+          <svg viewBox="0 0 700 300" role="img" aria-label="学習テーマの概念図">
+            <defs>
+              <marker
+                id="arrow-blue"
+                markerWidth="10"
+                markerHeight="10"
+                refX="8"
+                refY="3"
+                orient="auto"
+              >
+                <path d="M0,0 L0,6 L9,3 z" fill="#3157d5" />
+              </marker>
+            </defs>
 
-  <script>
-    function answerQuiz(correct) {
-      const feedback = document.getElementById("feedback");
-      feedback.style.display = "block";
-      feedback.textContent = correct
-        ? "正解です。ここに解説を表示します。"
-        : "もう一度考えてみましょう。ここにヒントや解説を表示します。";
-    }
-  </script>
-</body>
+            <rect
+              x="80"
+              y="105"
+              width="180"
+              height="90"
+              rx="16"
+              fill="#eef2ff"
+              stroke="#3157d5"
+              stroke-width="2"
+            />
+            <rect
+              x="440"
+              y="105"
+              width="180"
+              height="90"
+              rx="16"
+              fill="#f8faff"
+              stroke="#3157d5"
+              stroke-width="2"
+            />
+
+            <line
+              class="vec-blue"
+              x1="275"
+              y1="150"
+              x2="420"
+              y2="150"
+              marker-end="url(#arrow-blue)"
+            />
+
+            <text class="svgtext svgstrong" x="125" y="145">入力・概念A</text>
+            <text class="svgtext" x="130" y="170">具体例を記載</text>
+
+            <text class="svgtext svgstrong" x="485" y="145">結果・概念B</text>
+            <text class="svgtext" x="490" y="170">意味を記載</text>
+          </svg>
+
+          <div class="note">
+            図で何を確認すべきか、どの部分が重要かを文章でも説明します。
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. なぜAIで使われるのか</h2>
+
+        <p>
+          このテーマがAI・機械学習・LLMのどの処理につながるのかを説明します。
+          抽象語だけで終わらせず、データや値がどう扱われるのかまで示します。
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>対象</th>
+                <th>表現・処理の例</th>
+                <th>意味</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>例A</td>
+                <td class="math">処理・式・値</td>
+                <td>AI上で何を意味するか</td>
+              </tr>
+              <tr>
+                <td>例B</td>
+                <td class="math">処理・式・値</td>
+                <td>AI上で何を意味するか</td>
+              </tr>
+              <tr>
+                <td>後続学習</td>
+                <td>Embedding / Attention / Transformer など</td>
+                <td>この項目が後で何につながるか</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="definition">
+          このテーマがAIで必要になる理由を<strong>一文で要約</strong>します。
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>3. 基本操作・計算・考え方</h2>
+
+        <div class="op">
+          <strong>① 基本操作A</strong>
+          <div class="math">ここに式・手順・変換例</div>
+          <div class="note">何をしているのかを直感的に説明します。</div>
+        </div>
+
+        <div class="op">
+          <strong>② 基本操作B</strong>
+          <div class="math">ここに式・手順・変換例</div>
+          <div class="note">操作Aとの違いも説明します。</div>
+        </div>
+
+        <div class="diagram">
+          <div class="diagram-title">図：計算・変換・処理の流れ</div>
+
+          <svg viewBox="0 0 700 260" role="img" aria-label="計算処理の流れ">
+            <defs>
+              <marker
+                id="flow-arrow"
+                markerWidth="10"
+                markerHeight="10"
+                refX="8"
+                refY="3"
+                orient="auto"
+              >
+                <path d="M0,0 L0,6 L9,3 z" fill="#3157d5" />
+              </marker>
+            </defs>
+
+            <rect
+              x="55"
+              y="85"
+              width="150"
+              height="80"
+              rx="14"
+              fill="#eef2ff"
+              stroke="#3157d5"
+              stroke-width="2"
+            />
+            <rect
+              x="275"
+              y="85"
+              width="150"
+              height="80"
+              rx="14"
+              fill="#fbfcfe"
+              stroke="#98a2b3"
+              stroke-width="2"
+            />
+            <rect
+              x="495"
+              y="85"
+              width="150"
+              height="80"
+              rx="14"
+              fill="#eef7ef"
+              stroke="#137333"
+              stroke-width="2"
+            />
+
+            <line
+              class="vec-blue"
+              x1="215"
+              y1="125"
+              x2="260"
+              y2="125"
+              marker-end="url(#flow-arrow)"
+            />
+            <line
+              class="vec-blue"
+              x1="435"
+              y1="125"
+              x2="480"
+              y2="125"
+              marker-end="url(#flow-arrow)"
+            />
+
+            <text class="svgtext svgstrong" x="98" y="120">入力</text>
+            <text class="svgtext" x="83" y="145">値・データ</text>
+
+            <text class="svgtext svgstrong" x="315" y="120">処理</text>
+            <text class="svgtext" x="298" y="145">式・演算</text>
+
+            <text class="svgtext svgstrong" x="536" y="120">結果</text>
+            <text class="svgtext" x="518" y="145">意味を確認</text>
+          </svg>
+        </div>
+      </section>
+
+      <section class="card playground">
+        <h2>4. 実際に試してみる</h2>
+
+        <p>
+          値を変えて学習テーマの振る舞いを確認できる、小さな実験環境を用意します。
+          教材テーマに応じて、計算・確率・変換・損失・Attention重みなどを操作対象にします。
+        </p>
+
+        <div class="inputs">
+          <div class="input-block">
+            <strong>入力A</strong>
+            <div class="input-row">
+              <input id="valueA" type="number" value="2" />
+            </div>
+          </div>
+
+          <div class="input-block">
+            <strong>入力B</strong>
+            <div class="input-row">
+              <input id="valueB" type="number" value="3" />
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button class="primary" onclick="runDemo('add')">計算A</button>
+          <button class="primary" onclick="runDemo('mul')">計算B</button>
+          <button class="secondary" onclick="resetDemo()">リセット</button>
+        </div>
+
+        <div id="demoResult" class="result">
+          ここに操作結果と、その結果が何を意味するかを表示します。
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>5. 確認クイズ</h2>
+
+        <div class="quiz">
+          <div class="question">
+            Q1. 学習テーマの定義として最も適切なのはどれですか？
+          </div>
+          <div class="answers">
+            <button
+              class="answer"
+              onclick="
+                check(
+                  this,
+                  true,
+                  'q1',
+                  '定義の重要ポイントを再確認できています。',
+                )
+              "
+            >
+              A. 正しい定義
+            </button>
+            <button
+              class="answer"
+              onclick="
+                check(this, false, 'q1', '定義部分を見直してみましょう。')
+              "
+            >
+              B. よくある誤解
+            </button>
+            <button
+              class="answer"
+              onclick="check(this, false, 'q1', '似ていますが別の概念です。')"
+            >
+              C. 別概念の説明
+            </button>
+          </div>
+          <div id="q1" class="feedback"></div>
+        </div>
+
+        <div class="quiz">
+          <div class="question">
+            Q2. AIでこのテーマを学ぶ主な理由はどれですか？
+          </div>
+          <div class="answers">
+            <button
+              class="answer"
+              onclick="
+                check(
+                  this,
+                  false,
+                  'q2',
+                  'AIとの関連セクションを確認してください。',
+                )
+              "
+            >
+              A. 誤った理由
+            </button>
+            <button
+              class="answer"
+              onclick="
+                check(
+                  this,
+                  true,
+                  'q2',
+                  'AIの処理と学習テーマの接続が理解できています。',
+                )
+              "
+            >
+              B. 正しい理由
+            </button>
+            <button
+              class="answer"
+              onclick="
+                check(
+                  this,
+                  false,
+                  'q2',
+                  '表示上の都合ではなく、計算上の意味が重要です。',
+                )
+              "
+            >
+              C. 表示上だけの理由
+            </button>
+          </div>
+          <div id="q2" class="feedback"></div>
+        </div>
+
+        <button class="primary" style="margin-top: 16px" onclick="resetQuiz()">
+          回答をリセット
+        </button>
+      </section>
+
+      <section class="card summary">
+        <h2>6. まとめ</h2>
+
+        <ul class="checklist">
+          <li>学習テーマの定義を説明できる。</li>
+          <li>具体例を見て何を表しているか説明できる。</li>
+          <li>図を使って概念や処理の流れを説明できる。</li>
+          <li>基本的な計算・操作を自分で実行できる。</li>
+          <li>AI・機械学習・LLMでの使われ方を説明できる。</li>
+        </ul>
+
+        <p>
+          <strong>到達目標：</strong>
+          「何か」「なぜ必要か」「どう計算・操作するか」「AIでどう使うか」を、
+          図や具体例を使って自分の言葉で説明できれば、このレッスンは完了です。
+        </p>
+      </section>
+    </main>
+
+    <footer>学習テーマ：数学基礎 / 分野名 / 学習テーマ</footer>
+
+    <script>
+      function getDemoValues() {
+        return {
+          a: Number(document.getElementById("valueA").value),
+          b: Number(document.getElementById("valueB").value),
+        };
+      }
+
+      function fmt(n) {
+        return Number.isInteger(n) ? n : Number(n.toFixed(4));
+      }
+
+      function runDemo(type) {
+        const { a, b } = getDemoValues();
+        const result = document.getElementById("demoResult");
+
+        if ([a, b].some(Number.isNaN)) {
+          result.textContent = "数値を入力してください。";
+          return;
+        }
+
+        if (type === "add") {
+          result.textContent = `計算結果: ${fmt(a)} + ${fmt(b)} = ${fmt(a + b)}。教材テーマに応じた意味の説明をここに表示します。`;
+        } else if (type === "mul") {
+          result.textContent = `計算結果: ${fmt(a)} × ${fmt(b)} = ${fmt(a * b)}。教材テーマに応じた意味の説明をここに表示します。`;
+        }
+      }
+
+      function resetDemo() {
+        document.getElementById("valueA").value = 2;
+        document.getElementById("valueB").value = 3;
+        document.getElementById("demoResult").textContent =
+          "ここに操作結果と、その結果が何を意味するかを表示します。";
+      }
+
+      function check(button, correct, id, explanation) {
+        const feedback = document.getElementById(id);
+        const group = button.parentElement.querySelectorAll(".answer");
+
+        group.forEach((btn) => {
+          btn.disabled = true;
+          btn.style.cursor = "default";
+          btn.style.opacity = "0.85";
+        });
+
+        if (correct) {
+          feedback.textContent = `正解です。${explanation}`;
+          feedback.className = "feedback good";
+          button.style.borderColor = "#137333";
+          button.style.background = "#ecf8ef";
+        } else {
+          feedback.textContent = `不正解です。${explanation}`;
+          feedback.className = "feedback bad";
+          button.style.borderColor = "#b42318";
+          button.style.background = "#fff1f0";
+        }
+      }
+
+      function resetQuiz() {
+        document.querySelectorAll(".answer").forEach((btn) => {
+          btn.disabled = false;
+          btn.style.cursor = "pointer";
+          btn.style.opacity = "1";
+          btn.style.borderColor = "";
+          btn.style.background = "";
+        });
+
+        document.querySelectorAll(".feedback").forEach((el) => {
+          el.textContent = "";
+          el.className = "feedback";
+        });
+      }
+    </script>
+  </body>
 </html>
