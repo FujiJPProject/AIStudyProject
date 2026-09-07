@@ -1,45 +1,40 @@
 # 第5段階：Mini GPT
 
-[前の段階](04_第4段階_Transformer.md) ｜ [全体概要・目次](00_全体概要・目次.md) ｜ [次の段階](06_第6段階_Fine-tuning.md)
+[前の段階](04_第4段階_Transformer.md) ｜ [全体概要・目次](Readme.md) ｜ [次の段階](06_第6段階_Fine-tuning.md)
 
 ## この段階の位置づけ
 
-|項目|内容|
-|:--|:--|
-|学習テーマ|Mini GPT|
-|最終的に理解するもの|GPTが文章を生成する仕組み|
-|学習項目数|26項目|
+| 項目                 | 内容                      |
+| :------------------- | :------------------------ |
+| 学習テーマ           | Mini GPT                  |
+| 最終的に理解するもの | GPTが文章を生成する仕組み |
+| 学習項目数           | 21項目                    |
 
 ## 学習項目一覧
 
-|段階|学習テーマ|分野|項目|学習する理由|取得するべき内容|
-|:--|:--|:--|:--|:--|:--|
-|第5段階|Mini GPT|Tokenizer|Character Tokenization|最小構成でToken化を理解するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|文字単位Tokenizerを実装できること|
-|第5段階|Mini GPT|Tokenizer|BPE|実用LLMで使われるTokenizationを理解するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|BPEの基本原理を説明できること|
-|第5段階|Mini GPT|Tokenizer|SentencePiece（BPE・Unigram）|言語非依存のTokenizationを理解するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|SentencePieceがBPEやUnigramを実装するTokenizer学習ツールであり、単一のToken化アルゴリズムではないことを説明できること|
-|第5段階|Mini GPT|GPT構造|Decoder-only Transformer|GPTの基本構造だから。小規模GPTを一貫して実装・学習・評価するために必要であるため|Decoder-onlyモデルを構築できること|
-|第5段階|Mini GPT|GPT構造|Causal Mask|未来のTokenを参照させないため。小規模GPTを一貫して実装・学習・評価するために必要であるため|Causal Attentionの必要性を説明できること|
-|第5段階|Mini GPT|GPT構造|Autoregressive Model|前のTokenから次Tokenを生成するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|自己回帰生成を説明できること|
-|第5段階|Mini GPT|Language Modeling|Next Token Prediction|GPTの事前学習目的そのものだから。小規模GPTを一貫して実装・学習・評価するために必要であるため|次Token予測の学習方法を説明できること|
-|第5段階|Mini GPT|Language Modeling|Context Length|モデルが参照できる範囲を理解するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|Context Windowの意味を説明できること|
-|第5段階|Mini GPT|Language Modeling|Cross Entropy Loss|次Token予測を最適化するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|各位置のLogitと1 Token先へずらしたLabelを対応付け、Token単位のLossをBatch・系列方向へ集約できること|
-|第5段階|Mini GPT|文章生成|Greedy Decoding|最も基本的な生成方式を理解するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|最大確率Tokenを逐次選択できること|
-|第5段階|Mini GPT|文章生成|Temperature|出力のランダム性を調整するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|Temperatureによる確率分布変化を説明できること|
-|第5段階|Mini GPT|文章生成|Top-k|候補Tokenを限定するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|Top-k Samplingを実装できること|
-|第5段階|Mini GPT|文章生成|Top-p|累積確率で候補を選択するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|Nucleus Samplingを説明できること|
-|第5段階|Mini GPT|実装|Dataset作成|GPT学習用データを準備するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|連続Token列をWindowへ分割し、入力・Labelを1 TokenずらしてTrain・Validationデータを作成できること|
-|第5段階|Mini GPT|実装|Training Loop|GPTを実際に学習させるため。小規模GPTを一貫して実装・学習・評価するために必要であるため|Token Batch、Forward、Loss、Backward、更新、Validation Loss、Gradient Clipping、Checkpointを含むGPT学習Loopを実装できること|
-|第5段階|Mini GPT|実装|Text Generation|学習済みモデルから文章を生成するため。小規模GPTを一貫して実装・学習・評価するために必要であるため|自作GPTから文章を出力できること|
-|第5段階|Mini GPT|Tokenizer|Byte・Unicode処理|日本語や未知文字を壊さず、任意のテキストをToken化する考え方を理解するため。文字単位Tokenizerから実用的な多言語・未知文字対応へ進むための前提が不足している|文字・Unicode code point・UTF-8 byteの違いと、Byte-level Tokenizationの利点を説明できること|
-|第5段階|Mini GPT|Tokenizer|encode・decode・Special Token ID|文字列とToken ID列を双方向に変換し、系列境界を扱うため。Tokenizerの名称だけでは、モデル入出力へ接続する実装契約と特殊Token管理を確認できないため|encode・decodeを実装し、BOS・EOS・PAD・UNKなどのIDをVocabularyと整合させられること|
-|第5段階|Mini GPT|GPT構造|Model Configuration・Parameter数|Mini GPTの規模と計算量を制御するため。モデル規模を変更して学習可能な範囲へ調整し、各Hyperparameterの関係を理解する項目が不足している|Vocabulary Size、Context Length、d_model、Head数、Layer数、FFN次元を設定し、Parameter数を概算できること|
-|第5段階|Mini GPT|GPT構造|Language Model Head・Logits|各位置の隠れ表現からVocabulary全体の予測スコアを作るため。Transformer Blockの出力を次Token確率へ変換する出口が既存項目に明示されていない|最終NormとLinear層からBatch・系列長・Vocabulary SizeのLogitを出力できること|
-|第5段階|Mini GPT|GPT構造|Weight Tying|入力Embeddingと出力Projectionの重みを共有するため。GPT系モデルでよく使われる入力・出力Embedding間の関係が不足している|重み共有の実装方法と、Parameter数・表現学習への影響を説明できること|
-|第5段階|Mini GPT|Language Modeling|Input・Label ShiftとTeacher Forcing|系列全位置の次Token予測を並列に学習するため。Next Token Predictionを実際のTensorへ落とす中心処理が既存項目では曖昧である|入力Tokenと1位置先のLabelを対応付け、学習時は正解Prefix全体を入力することを説明・実装できること|
-|第5段階|Mini GPT|評価|Validation Loss・Perplexity|学習の進行と未知テキストへの予測性能を評価するため。生成例の主観評価だけでは、言語モデルの学習状態と過学習を定量的に判断できないため|Validation Lossを計算し、Perplexityとの関係と限界を説明できること|
-|第5段階|Mini GPT|実装|Checkpoint・学習再開|学習状態を保存し、中断後も同じ条件から再開するため。Mini GPTの学習実験を安全に継続し、最良状態を再利用する仕組みが不足している|Model、Optimizer、Step、設定を保存し、Checkpointから学習を再開できること|
-|第5段階|Mini GPT|文章生成|EOS・生成終了条件|生成を適切な長さと条件で停止するため。Text GenerationにはToken選択だけでなく、安全に終了する制御が必要だが明示されていない|EOS検出、最大生成Token数、Context Length上限による停止を実装できること|
-|第5段階|Mini GPT|検証|小規模BatchへのOverfit Test|モデル、Loss、勾配、Datasetの実装がつながっていることを確認するため。学習が進まない原因をモデル能力と実装不具合に切り分ける実践的な検証手順が不足している|ごく小さいBatchを意図的に暗記させ、Lossが十分下がるかで実装を診断できること|
+| 段階    | 学習テーマ | 分野              | 項目                                        | 学習する理由                                                                                                  | 取得するべき内容                                                                                                                                                      |
+| :------ | :--------- | :---------------- | :------------------------------------------ | :------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 第5段階 | Mini GPT   | Tokenizer         | Character Tokenization                      | 最小構成のTokenizerを自作し、文字とToken IDの対応を具体的に理解するため                                       | 学習テキストから文字Vocabularyを作り、文字単位のencode・decodeを実装できること                                                                                        |
+| 第5段階 | Mini GPT   | Tokenizer         | Byte・Unicode処理                           | 日本語や未知文字を壊さず扱うために、文字と実際のByte列の違いを理解するため                                    | Unicode code point、UTF-8 byte、文字の違いを説明し、Byte-level Tokenizationの利点と系列長への影響を説明できること                                                     |
+| 第5段階 | Mini GPT   | Tokenizer         | BPE                                         | 文字・Byte単位から頻出する並びをSubwordへまとめ、Vocabulary Sizeと系列長を調整する仕組みを理解するため        | BPEのPair集計、Merge規則の学習、Token化を小規模データで実装できること                                                                                                 |
+| 第5段階 | Mini GPT   | Tokenizer         | SentencePiece（BPE・Unigram）               | 言語固有の事前分割へ依存せず、Raw TextからSubword Tokenizerを学習する方法を理解するため                       | SentencePieceがBPEとUnigramを選択できるTokenizer学習ツールであることを説明し、両方式の違いを説明できること                                                            |
+| 第5段階 | Mini GPT   | Tokenizer         | encode・decode・Special Token ID            | Tokenizerとモデルの間で文字列とToken ID列を双方向に変換し、系列境界を一貫して扱うため                         | encode・decodeを実装し、BOS、EOS、PAD、UNKなどのIDをVocabularyと整合させられること                                                                                    |
+| 第5段階 | Mini GPT   | Language Modeling | Autoregressive Model・Next Token Prediction | 過去のToken列を条件として次Tokenの確率を学ぶ、GPTの学習目的と生成原理を一体として理解するため                 | 系列確率の自己回帰分解とNext Token Predictionの関係を説明できること                                                                                                   |
+| 第5段階 | Mini GPT   | Language Modeling | Context Length                              | 各予測で参照できる過去Token数と、モデル入力の最大長を理解するため                                             | Context Windowの意味を説明し、長さを超えた系列の分割または切り詰め方を説明できること                                                                                  |
+| 第5段階 | Mini GPT   | Language Modeling | Input・Label ShiftとTeacher Forcing         | 系列内の全位置についてNext Token Predictionを並列に学習するTensorを作るため                                   | 入力Tokenと1位置先のLabelを対応付け、学習時は正解Prefixをまとめて入力することを説明・実装できること                                                                   |
+| 第5段階 | Mini GPT   | 実装              | Dataset作成                                 | 連続Token列から、Context Lengthに収まる学習用の入力・Label組を反復して供給するため                            | Token列をWindowへ分割し、Input・Label Shiftを適用したTrain・Validation Datasetを作成できること                                                                        |
+| 第5段階 | Mini GPT   | GPT構造           | Model Configuration・Parameter数            | 手元の計算資源で学習可能なMini GPTの規模を設計するため                                                        | Vocabulary Size、Context Length、d_model、Head数、Layer数、FFN次元を設定し、主要部分のParameter数を概算できること                                                     |
+| 第5段階 | Mini GPT   | GPT構造           | Decoder-only Transformer・Causal Mask       | 第4段階で学んだTransformer Blockを、未来Tokenを参照しないGPT本体として組み立てるため                          | Token・Position表現、Causal Self-Attention、FFN、Residual、NormからDecoder-onlyモデルを実装できること                                                                 |
+| 第5段階 | Mini GPT   | GPT構造           | Language Model Head・Logits                 | 各位置の隠れ表現をVocabulary全体の次Token予測Scoreへ変換するため                                              | 最終NormalizationとLinear層から`(Batch, Seq, Vocabulary Size)`のLogitsを出力できること                                                                                |
+| 第5段階 | Mini GPT   | GPT構造           | Weight Tying                                | 入力EmbeddingとLanguage Model HeadのWeightを共有し、入力表現と出力予測を対応付けながらParameter数を抑えるため | Weight Tyingを実装し、共有しない場合とのParameter数の違いを説明できること                                                                                             |
+| 第5段階 | Mini GPT   | Language Modeling | Cross Entropy Loss                          | 各位置のLogitsと次Token Labelを比較し、モデル全体を学習する単一のLossへ集約するため                           | LogitsとLabelの形状をLoss関数へ渡せる形へ変換し、Paddingなどの無効Labelを除外して平均Lossを計算できること                                                             |
+| 第5段階 | Mini GPT   | 評価              | Validation Loss・Perplexity                 | 未知テキストへの次Token予測性能と過学習を定量的に確認するため                                                 | 学習時と分離してValidation Lossを計算し、Perplexityが平均Negative Log-Likelihoodの指数であることと、Tokenizerが異なるモデル間では単純比較しにくいことを説明できること |
+| 第5段階 | Mini GPT   | 実装              | Training Loop                               | Dataset、モデル、Loss、Optimizerを接続し、Mini GPTを反復学習・評価するため                                    | Token Batch取得、Forward、Loss、zero_grad、Backward、Gradient Clipping、更新、定期的なValidationを含むLoopを実装できること                                            |
+| 第5段階 | Mini GPT   | 検証              | 小規模BatchへのOverfit Test                 | 本格学習の前に、モデル、Dataset、Loss、勾配更新が正しく接続されているか確認するため                           | 固定したごく小さいBatchを意図的に暗記させ、Loss低下と予測結果から実装不具合を切り分けられること                                                                       |
+| 第5段階 | Mini GPT   | 実装              | Checkpoint・学習再開                        | 長時間の学習を中断・再開し、最良のValidation結果を持つ状態を再利用するため                                    | Model、Optimizer、Step、設定、Tokenizer情報を保存し、同じ条件で学習または推論を再開できること                                                                         |
+| 第5段階 | Mini GPT   | 文章生成          | Text Generation・Greedy Decoding            | 学習済みモデルへ現在のToken列を入力し、最大確率の次Tokenを追加する基本生成Loopを理解するため                  | 末尾位置のLogitsから最大値のTokenを選択し、入力へ追加して逐次生成できること                                                                                           |
+| 第5段階 | Mini GPT   | 文章生成          | Sampling（Temperature・Top-k・Top-p）       | 確率分布の鋭さと候補集合を調整し、Greedy Decoding以外の生成を比較するため                                     | Temperature Scaling、Top-k、Top-pを順に適用してSamplingし、各設定が多様性へ与える影響を説明できること                                                                 |
+| 第5段階 | Mini GPT   | 文章生成          | EOS・生成終了条件                           | 生成Loopが無制限に続いたりContext Lengthを超えたりすることを防ぐため                                          | EOS検出、最大生成Token数、Context Length上限による終了条件を実装できること                                                                                            |
 
 ## 到達目標
 
@@ -69,4 +64,4 @@ Training
 
 ---
 
-[前の段階](04_第4段階_Transformer.md) ｜ [全体概要・目次](00_全体概要・目次.md) ｜ [次の段階](06_第6段階_Fine-tuning.md)
+[前の段階](04_第4段階_Transformer.md) ｜ [全体概要・目次](Readme.md) ｜ [次の段階](06_第6段階_Fine-tuning.md)
