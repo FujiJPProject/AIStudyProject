@@ -1,49 +1,44 @@
 # 第4段階：Transformer
 
-[前の段階](03_第3段階_Neural_Network.md) ｜ [全体概要・目次](00_全体概要・目次.md) ｜ [次の段階](05_第5段階_Mini_GPT.md)
+[前の段階](03_第3段階_Neural_Network.md) ｜ [全体概要・目次](Readme.md) ｜ [次の段階](05_第5段階_Mini_GPT.md)
 
 ## この段階の位置づけ
 
-|項目|内容|
-|:--|:--|
-|学習テーマ|Transformer|
-|最終的に理解するもの|LLMの中核となる構造|
-|学習項目数|30項目|
+| 項目                 | 内容                |
+| :------------------- | :------------------ |
+| 学習テーマ           | Transformer         |
+| 最終的に理解するもの | LLMの中核となる構造 |
+| 学習項目数           | 25項目              |
 
 ## 学習項目一覧
 
-|段階|学習テーマ|分野|項目|学習する理由|取得するべき内容|
-|:--|:--|:--|:--|:--|:--|
-|第4段階|Transformer|NLP基礎|Token|文章をモデルが扱う単位へ分解するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Tokenの意味を説明できること|
-|第4段階|Transformer|NLP基礎|Vocabulary|モデルが扱えるToken集合を理解するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Vocabulary Sizeの意味を説明できること|
-|第4段階|Transformer|NLP基礎|Tokenization|文字列を数値列へ変換するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|文章からToken IDへの変換を説明できること|
-|第4段階|Transformer|Embedding|Token Embedding|Tokenをベクトルへ変換するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Embedding層の役割を説明できること|
-|第4段階|Transformer|Embedding|Positional Encoding|Transformerに単語順序を与えるため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|正弦波・学習可能な絶対位置・相対位置・RoPEの違いと外挿特性を説明できること|
-|第4段階|Transformer|Attention|Query|参照したい情報を表現するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Queryの役割を説明できること|
-|第4段階|Transformer|Attention|Key|参照対象の特徴を表現するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Keyの役割を説明できること|
-|第4段階|Transformer|Attention|Value|実際に取り出す情報を表現するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Valueの役割を説明できること|
-|第4段階|Transformer|Attention|Scaled Dot-Product Attention|Attentionの中心計算を理解するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Attention(Q,K,V)を説明できること|
-|第4段階|Transformer|Attention|Softmax|Attention Scoreを重みへ変換するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Scoreが重みへ変換される仕組みを説明できること|
-|第4段階|Transformer|Attention|Self-Attention|文章内Token同士を関連付けるため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|各Tokenが他Tokenを参照する仕組みを説明できること|
-|第4段階|Transformer|Attention|Multi-Head Attention|複数の観点からToken関係を捉えるため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|複数Headを使う意味を説明できること|
-|第4段階|Transformer|Transformer構造|Feed Forward Network|Attention後の特徴変換を行うため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|各Tokenへ同じMLPを適用する仕組みと、次元の拡張・縮小、GELU・SwiGLUの役割を説明できること|
-|第4段階|Transformer|Transformer構造|Residual Connection|深いネットワークを安定して学習するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Residual接続の意味を説明できること|
-|第4段階|Transformer|Transformer構造|Layer Normalization|学習を安定化するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|正規化する軸を説明し、Pre-Norm・Post-Normの配置差とRMSNormとの違いを説明できること|
-|第4段階|Transformer|Transformer構造|Transformer Block|LLMの基本構成単位を理解するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Attention・FFN・Residual・Normの関係を説明できること|
-|第4段階|Transformer|Transformer種類|Encoder|入力理解中心のTransformerを理解するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Encoder構造の特徴を説明できること|
-|第4段階|Transformer|Transformer種類|Transformer Decoder・GPT Decoder-only|GPTの中心構造を理解するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|原典Transformer DecoderのMasked Self-Attention・Cross-Attentionと、通常Cross-Attentionを持たないGPTのDecoder-only Blockを区別できること|
-|第4段階|Transformer|Transformer種類|Encoder-Decoder|翻訳などの構造を理解するため。GPTの構造とSelf-Attentionの計算を理解・実装するために必要であるため|Encoder出力をDecoderがCross-Attentionで参照し、条件付き生成を行う流れを説明できること|
-|第4段階|Transformer|NLP基礎|Special Token・Padding|長さの異なる系列をBatch化し、会話や文書の境界を表すため。TokenとVocabularyだけでは、実際のBatch入力や生成の開始・終了を表現する方法が不足している|BOS、EOS、PADなどの役割と、Paddingされた系列を同じ長さへそろえる方法を説明できること|
-|第4段階|Transformer|Attention|Attention Mask|参照してよいTokenと参照してはいけないTokenを制御するため。Self-Attentionの参照範囲を制御する必須要素が既存項目に含まれていない|Padding MaskとCausal Maskの目的を区別し、Softmax前のScoreへ適用できること|
-|第4段階|Transformer|Attention|Q・K・VのTensor形状|Batch、Head、系列長、Head次元を追跡してAttentionを実装するため。概念説明だけでは実装時の形状不一致を防げず、Multi-Head Attentionをコードへ落とせないため|Q・K・Vを複数Headへ分割・転置し、Attention出力を元の形状へ戻せること|
-|第4段階|Transformer|Attention|Head結合・Output Projection|複数Headの出力を統合してモデル次元へ戻すため。Multi-Head Attentionの生成後に必要な統合処理が既存項目から抜けている|Headのconcatと出力射影Wₒの役割・形状を説明し、実装できること|
-|第4段階|Transformer|Attention|双方向・因果Attention|目的に応じてTokenの参照方向を変えるため。EncoderとDecoderの違いを構造名だけでなく、情報参照可能範囲として理解する項目が不足している|Encoderの双方向AttentionとGPTの因果Attentionの参照範囲を比較・説明できること|
-|第4段階|Transformer|Attention|Cross-Attention|別の系列が持つ情報を参照して出力を生成するため。Encoder-Decoder型を成立させる主要機構が既存項目に明示されていない|Decoder側の表現からQueryを作り、Encoder出力からKey・Valueを作る流れを説明できること|
-|第4段階|Transformer|Embedding|RoPE・相対位置表現|Token間の相対的な位置関係をAttentionへ組み込むため。現代のDecoder-only LLMで広く使われる位置表現へ接続する具体項目が不足している|RoPEの目的と、絶対位置Embedding・相対位置方式との違いを概念的に説明できること|
-|第4段階|Transformer|Transformer構造|Pre-Norm・Post-Norm|NormalizationをSub-layerの前後どちらへ置くかで学習特性が変わることを理解するため。LayerNormの名称だけではTransformer Block内での配置とResidualとの関係を理解できないため|両構成の計算順序を図示し、深いモデルの学習安定性との関係を説明できること|
-|第4段階|Transformer|Transformer構造|RMSNorm|平均を引かず二乗平均平方根で正規化する方式を理解するため。現代的なLLM構造を読む際に頻出する正規化方式が既存項目にない|LayerNormとの計算上の違いと、現代LLMで採用される理由を概念的に説明できること|
-|第4段階|Transformer|計算特性|Attentionの計算量・メモリ量|Context Lengthが計算資源へ与える影響を理解するため。長いContextが学習・推論コストを急増させる構造的理由を学ぶ項目が不足している|標準Self-Attentionが系列長に対して概ね二次で増える理由を説明できること|
-|第4段階|Transformer|計算特性|効率的Attention・FlashAttention|Attentionの結果を保ちながらメモリアクセスや中間保存を効率化する考え方を理解するため。実用的なTransformer学習・推論で重要なAttention効率化への接続が不足している|FlashAttentionが近似ではなく計算順序とメモリ利用を改善する手法であることを説明できること|
+| 段階    | 学習テーマ  | 分野            | 項目                            | 学習する理由                                                                                              | 取得するべき内容                                                                                               |
+| :------ | :---------- | :-------------- | :------------------------------ | :-------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------- |
+| 第4段階 | Transformer | NLP基礎         | Token・Vocabulary・Tokenization | 文章をモデルが扱う単位へ分割し、各TokenをVocabulary内のIDへ対応付ける一連の入口を理解するため             | Token、Vocabulary、Token IDの関係を説明し、文章がID列へ変換される流れを説明できること                          |
+| 第4段階 | Transformer | NLP基礎         | Special Token・Padding          | 系列の開始・終了などを表し、長さの異なるToken列を同じBatchで扱うため                                      | BOS、EOS、PAD、UNKの役割を説明し、Padding後のToken ID列を作成できること                                        |
+| 第4段階 | Transformer | Embedding       | Token Embedding                 | 離散的なToken IDを、モデルが演算できる連続ベクトルへ変換するため                                          | Embedding行列からToken IDに対応するベクトルを取り出し、系列のTensor形状を説明できること                        |
+| 第4段階 | Transformer | 位置表現        | 絶対位置表現                    | Attention単体では保持されないTokenの順序をEmbeddingへ与える基本方式を理解するため                         | 正弦波Positional Encodingと学習可能なPosition Embeddingの違い、およびToken Embeddingへの加え方を説明できること |
+| 第4段階 | Transformer | Attention       | Query・Key・Value               | 各Tokenが「何を探すか」「何を示すか」「どの情報を渡すか」を一つのAttention計算として理解するため          | 入力からQ・K・Vを線形変換で作り、それぞれの役割と形状を説明できること                                          |
+| 第4段階 | Transformer | Attention       | Self-Attention                  | 同じ系列からQ・K・Vを作り、各Tokenが系列内の情報を取り込む仕組みを理解するため                            | Self-Attentionと一般的なAttentionの違いを説明し、各Tokenが同じ系列のどの情報を参照するか説明できること         |
+| 第4段階 | Transformer | Attention       | 双方向・因果Attention           | 目的に応じて、各Tokenが過去・未来のどこまで参照できるかを区別するため                                     | Encoderの双方向Attentionと、GPTの因果Attentionの参照範囲を図示・比較できること                                 |
+| 第4段階 | Transformer | Attention       | Attention Score・Scaling        | QueryとKeyの内積で関連度を求め、次元が大きいときの値の増大をScalingで抑えるため                           | QKᵀの計算と形状を追い、√dₖで割る理由を説明できること                                                           |
+| 第4段階 | Transformer | 位置表現        | 相対位置表現・RoPE              | Q・KとAttention ScoreへToken間の相対位置関係を反映する現代的な方式を理解するため                          | 絶対位置表現との違いを説明し、RoPEが位置に応じてQ・Kを回転させる考え方を説明できること                         |
+| 第4段階 | Transformer | Attention       | Attention Mask                  | Padding位置や未来TokenをAttentionの参照対象から除外するため                                               | Padding MaskとCausal Maskを区別し、Softmax前のAttention Scoreへ適用できること                                  |
+| 第4段階 | Transformer | Attention       | Softmax・Valueの加重和          | Mask適用後のAttention Scoreを合計1の重みへ変換し、Valueから参照結果を作るため                             | softmax(QKᵀ/√dₖ + Mask)Vの各計算とTensor形状を説明・実装できること                                             |
+| 第4段階 | Transformer | Attention       | Cross-Attention                 | ある系列のQueryから別の系列が持つKey・Valueを参照する仕組みを理解するため                                 | Decoderの表現からQを作り、Encoder出力からK・Vを作る流れを説明できること                                        |
+| 第4段階 | Transformer | Attention       | Multi-Head Attention            | 異なる線形射影を使う複数のHeadで、Token間の関係を複数の表現空間から捉えるため                             | Single-Headとの違いと、HeadごとにQ・K・Vを作る意味を説明できること                                             |
+| 第4段階 | Transformer | Attention       | Q・K・VのTensor形状・Head分割   | Multi-Head Attentionを実装する際に、Batch、系列長、Head数、Head次元を正しく追跡するため                   | Q・K・Vを`(Batch, Seq, d_model)`から`(Batch, Head, Seq, d_head)`へ変形・転置できること                         |
+| 第4段階 | Transformer | Attention       | Head結合・Output Projection     | 各Headの出力を結合し、後続Layerが扱うモデル次元へ戻すため                                                 | Headをconcatして`(Batch, Seq, d_model)`へ戻し、出力射影Wₒを適用できること                                      |
+| 第4段階 | Transformer | 計算特性        | Attentionの計算量・メモリ量     | 系列長の二乗サイズとなるAttention Score行列が、長いContextの主要コストになるため                          | 標準Self-Attentionの計算量とAttention行列のメモリ量が、系列長に対して概ね二次で増える理由を説明できること      |
+| 第4段階 | Transformer | Transformer構造 | Feed Forward Network            | Attentionで混ぜた各Tokenの特徴を、Tokenごとに同じMLPで変換するため                                        | モデル次元から中間次元への拡張・縮小と、GELU・SwiGLUを使う処理を説明できること                                 |
+| 第4段階 | Transformer | Transformer構造 | Residual Connection             | Sub-layerの入力を出力へ加え、情報と勾配が深いBlockを通りやすくするため                                    | Attention・FFNの入出力形状が一致する理由と、Residual加算を説明・実装できること                                 |
+| 第4段階 | Transformer | Transformer構造 | Layer Normalization・RMSNorm    | Tokenごとの特徴方向を正規化し、Transformerの学習を安定させる代表方式を比較するため                        | 正規化する軸を説明し、平均を引くLayerNormと二乗平均平方根を使うRMSNormの違いを説明できること                   |
+| 第4段階 | Transformer | Transformer構造 | Pre-Norm・Post-Norm             | NormalizationをSub-layerとResidual Connectionのどこへ配置するかで計算順序と学習特性が変わるため           | Pre-NormとPost-Normの計算順序を図示し、Residual Connectionとの位置関係を説明できること                         |
+| 第4段階 | Transformer | Transformer構造 | Transformer Block               | Multi-Head Attention、FFN、Residual Connection、Normalizationを一つの再利用可能な層としてまとめるため     | Transformer BlockのForward処理を順に説明し、各Tensorの形状を保って実装できること                               |
+| 第4段階 | Transformer | Transformer種類 | Encoder-only Transformer        | 入力系列全体を双方向に参照し、系列の理解や表現生成に使う構造を理解するため                                | 双方向Self-Attentionを持つEncoder Blockの構成と主な用途を説明できること                                        |
+| 第4段階 | Transformer | Transformer種類 | Encoder-Decoder Transformer     | Encoderの表現をDecoderがCross-Attentionで参照し、入力系列に条件付けた出力を生成する原典構造を理解するため | Encoder、Masked Self-Attentionを持つDecoder、Cross-Attentionの接続関係を説明できること                         |
+| 第4段階 | Transformer | Transformer種類 | Decoder-only Transformer・GPT   | 因果Self-Attentionを持つBlockだけで、前のTokenから次のTokenを予測するGPTの構造へつなげるため              | 原典Transformer Decoderとの違いを説明し、通常Cross-Attentionを持たないGPT型Blockを構成できること               |
+| 第4段階 | Transformer | 計算特性        | 効率的Attention・FlashAttention | 標準Attentionと同じ結果を保ちながら、GPUメモリ間の読み書きと中間保存を減らす考え方を理解するため          | FlashAttentionが近似Attentionではなく、Tilingと計算順序の工夫によるExact Attentionであることを説明できること   |
 
 ## 到達目標
 
@@ -77,4 +72,4 @@ Transformer Block
 
 ---
 
-[前の段階](03_第3段階_Neural_Network.md) ｜ [全体概要・目次](00_全体概要・目次.md) ｜ [次の段階](05_第5段階_Mini_GPT.md)
+[前の段階](03_第3段階_Neural_Network.md) ｜ [全体概要・目次](Readme.md) ｜ [次の段階](05_第5段階_Mini_GPT.md)
